@@ -1,7 +1,1 @@
-2016-06-22 17:28:34	| Error message: my custom error msg
-2016-06-22 17:28:35	| Error message: my custom error msg
-2016-06-22 17:28:35	| Error message: my custom error msg
-2016-06-22 17:41:05	| Error message: my custom error msg
-2016-06-22 17:45:53	| Error message: my custom error msg
-2016-06-22 17:45:55	| Error message: my custom error msg
-2016-06-22 17:45:56	| Error message: my custom error msg
+

@@ -8,19 +8,25 @@
  */
 abstract class LoggerAbstract implements LoggerInterface
 {
+    protected $typeWarning = 'Warning message: ';
+
+    protected $typeError = 'Error message: ';
+
+    protected $typeNotice = 'Notice message: ';
+
     public function warning($msg)
     {
-        $this->_write($msg, 'Warning message: ');
+        $this->_write($msg, $this->typeWarning);
     }
 
     public function error($msg)
     {
-        $this->_write($msg, 'Error message: ');
+        $this->_write($msg, $this->typeError);
     }
 
     public function notice($msg)
     {
-        $this->_write($msg, 'Notice message: ');
+        $this->_write($msg, $this->typeNotice);
     }
 
     abstract protected function _write($msg, $type);

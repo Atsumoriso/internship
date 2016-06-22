@@ -26,6 +26,7 @@ class LoggerDB extends LoggerAbstract
             $this->_connect();
             $statement = $this->dbh->prepare("INSERT INTO `log` (`message`, `type`, `creation_date`) values (?, ?, ?)");
             $inserted = $statement->execute([$msg, 'error', date('Y-m-d H:i:s')]);
+            $this->dbh = NULL;
         }catch(PDOException $e) {
             die("PDO Exception" . $e->getMessage());
         }
