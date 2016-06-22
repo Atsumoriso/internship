@@ -1,6 +1,6 @@
 <?php
 
-interface LogerInterface
+interface LoggerInterface
 {
 	function warning($msg);
 
@@ -9,7 +9,27 @@ interface LogerInterface
 	function notice($msg);
 }
 
-class LogInDB implements LogerInterface
+abstract class LoggerAbstract implements LoggerInterface
+{
+    public function warning($msg)
+    {
+        $this->write($msg, 'Warning message: ');
+    }
+
+    public function error($msg)
+    {
+        $this->write($msg, 'Error message: ');
+    }
+
+    public function notice($msg)
+    {
+        $this->write($msg, 'Notice message: ');
+    }
+
+    abstract protected function write($msg, $type);
+}
+
+class LoggerDB extends LoggerAbstract
 {
     protected $dbh;
 
@@ -38,24 +58,9 @@ class LogInDB implements LogerInterface
             die("PDO Exception" . $e->getMessage());
         }
     }
-
-    function error($msg)
-    {
-        $this->write($msg, 'error');
-    }
-
-    function warning($msg)
-    {
-        $this->write($msg, 'warning');
-    }
-
-    function notice($msg)
-    {
-        $this->write($msg, 'notice');
-    }
 }
 
-class LogInFIle implements LogerInterface
+class LoggerFile extends LoggerAbstract
 {
     protected $fileConnect;
 
@@ -64,34 +69,16 @@ class LogInFIle implements LogerInterface
         $this->fileConnect = fopen("log.txt", "w");
     }
 
-    protected function write($msg)
+    protected function write($msg, $type)
     {
         $this->connect();
-        fwrite($this->fileConnect, $msg);
+        fwrite($this->fileConnect, $type . $msg);
         fclose($this->fileConnect);
-    }
-
-    function warning($msg)
-    {
-        $msg = "Warning message: \n {$msg}";
-        $this->write($msg);
-    }
-
-    function error($msg)
-    {
-        $msg = "Error message: \n {$msg}";
-        $this->write($msg);
-    }
-
-    function notice($msg)
-    {
-        $msg = "Notice message: \n {$msg}";
-        $this->write($msg);
     }
 }
 
-$dbLoger = new LogInDB;
-$dbLoger->error('my custom error msg, it work');
+$dbLoger = new LoggerDB;
+$dbLoger->error('my custom error msg, it work2');
 
-$fileLoger = new LogInFIle;
+$fileLoger = new LoggerFile;
 $fileLoger->error('my custom error msg');
