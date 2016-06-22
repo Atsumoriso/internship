@@ -30,9 +30,13 @@ class LogInDB implements LogerInterface
 
     protected function write($msg, $type)
     {
-        $this->connect();
-        $statement = $this->dbh->prepare("INSERT INTO `log` (`message`, `type`, `creation_date`) values (?, ?, ?)");
-        $inserted = $statement->execute([$msg, 'error', date('Y-m-d H:i:s')]);
+        try {
+            $this->connect();
+            $statement = $this->dbh->prepare("INSERT INTO `log` (`message`, `type`, `creation_date`) values (?, ?, ?)");
+            $inserted = $statement->execute([$msg, 'error', date('Y-m-d H:i:s')]);
+        }catch(PDOException $e) {
+            die("PDO Exception" . $e->getMessage());
+        }
     }
 
     function error($msg)
