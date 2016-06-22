@@ -10,16 +10,16 @@ class LoggerFile extends LoggerAbstract
 {
     protected $fileConnect;
 
-    protected function connect()
+    protected function _connect()
     {
         $this->fileConnect = fopen(Config::FILEPATH, "a");
     }
 
-    protected function write($msg, $type)
+    protected function _write($msg, $type)
     {
         if(is_writable(Config::FILEPATH))
         {
-            $this->connect();
+            $this->_connect();
             $readyMessage = date('Y-m-d H:i:s') . "\t| " . $type . $msg . PHP_EOL;
             fwrite($this->fileConnect, $readyMessage);
             fclose($this->fileConnect);

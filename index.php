@@ -1,11 +1,9 @@
 <?php
 
-require_once('LoggerInterface.php');
-require_once('LoggerAbstract.php');
-require_once('LoggerDB.php');
-require_once('LoggerFile.php');
-require_once('Config.php');
-
+function __autoload($classname) {
+    $filename = "./". $classname .".php";
+    require_once($filename);
+}
 
 $dbLoger = new LoggerDB;
 $dbLoger->error('my custom error msg, it work2');

@@ -10,7 +10,7 @@ class LoggerDB extends LoggerAbstract
 {
     protected $dbh;
 
-    protected function connect()
+    protected function _connect()
     {
         $opt = array(
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -20,10 +20,10 @@ class LoggerDB extends LoggerAbstract
         $this->dbh = new PDO($dsn, Config::DBUSER, Config::DBPASS, $opt);
     }
 
-    protected function write($msg, $type)
+    protected function _write($msg, $type)
     {
         try {
-            $this->connect();
+            $this->_connect();
             $statement = $this->dbh->prepare("INSERT INTO `log` (`message`, `type`, `creation_date`) values (?, ?, ?)");
             $inserted = $statement->execute([$msg, 'error', date('Y-m-d H:i:s')]);
         }catch(PDOException $e) {
