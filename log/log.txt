@@ -1,0 +1,4 @@
+
+2016-06-22 18:04:22	| Error message: my custom error msg
+2016-06-23 12:16:09	| Error message: my custom error msg
+2016-06-23 12:16:10	| Error message: my custom error msg

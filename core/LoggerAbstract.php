@@ -6,7 +6,8 @@
  * Date: 22.06.16
  * Time: 16:47
  */
-abstract class LoggerAbstract implements LoggerInterface
+
+abstract class Core_LoggerAbstract implements Core_LoggerInterface
 {
     protected $typeWarning = 'Warning message: ';
 

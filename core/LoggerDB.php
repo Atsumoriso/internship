@@ -6,7 +6,7 @@
  * Date: 22.06.16
  * Time: 16:49
  */
-class LoggerDB extends LoggerAbstract
+class Core_LoggerDB extends Core_LoggerAbstract
 {
     protected $dbh;
 
@@ -16,8 +16,8 @@ class LoggerDB extends LoggerAbstract
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         );
-        $dsn = "mysql:host=" . Config::HOST . ";dbname=" . Config::DBNAME . "";
-        $this->dbh = new PDO($dsn, Config::DBUSER, Config::DBPASS, $opt);
+        $dsn = "mysql:host=" . Config_LoggerConfig::HOST . ";dbname=" . Config_LoggerConfig::DBNAME . "";
+        $this->dbh = new PDO($dsn, Config_LoggerConfig::DBUSER, Config_LoggerConfig::DBPASS, $opt);
     }
 
     protected function _write($msg, $type)
@@ -26,7 +26,7 @@ class LoggerDB extends LoggerAbstract
             $this->_connect();
             $statement = $this->dbh->prepare("INSERT INTO `log` (`message`, `type`, `creation_date`) values (?, ?, ?)");
             $inserted = $statement->execute([$msg, 'error', date('Y-m-d H:i:s')]);
-            $this->dbh = NULL;
+            unset($this->dbh);
         }catch(PDOException $e) {
             die("PDO Exception" . $e->getMessage());
         }

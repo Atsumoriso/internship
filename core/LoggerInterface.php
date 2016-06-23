@@ -6,7 +6,8 @@
  * Date: 22.06.16
  * Time: 16:48
  */
-interface LoggerInterface
+
+interface Core_LoggerInterface
 {
     function warning($msg);
 
