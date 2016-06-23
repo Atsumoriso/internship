@@ -17,3 +17,7 @@
 2016-06-23 16:25:05	| Error message: my custom error msg
 2016-06-23 16:25:05	| Error message: my custom error msg
 2016-06-23 16:27:30	| Error message: my custom error msg
+2016-06-23 18:51:20	| Error message: my custom error msg
+2016-06-23 18:51:26	| Error message: my custom error msg
+2016-06-23 18:54:36	| Error message: my custom error msg
+2016-06-23 18:59:59	| Error message: my custom error msg
