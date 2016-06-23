@@ -1,6 +1,7 @@
 <?php
+namespace Config;
 
-class Config_LoggerConfig
+class LoggerConfig
 {
     const DBNAME = 'pdoLesson';
     const DBUSER = 'root';

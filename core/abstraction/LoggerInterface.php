@@ -1,13 +1,13 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: dor
  * Date: 22.06.16
  * Time: 16:48
  */
+namespace Core\Abstraction;
 
-interface Core_LoggerInterface
+interface LoggerInterface
 {
     function warning($msg);
 
@@ -15,3 +15,4 @@ interface Core_LoggerInterface
 
     function notice($msg);
 }
+
