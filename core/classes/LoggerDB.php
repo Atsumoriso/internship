@@ -7,21 +7,22 @@
  */
 namespace Core\Classes;
 
-use Config;
-use Core\Abstraction;
+use Config\LoggerConfig;
+use Core\Abstraction\LoggerAbstract;
+use PDO;
 
-class LoggerDB extends \Core\Abstraction\LoggerAbstract
+class LoggerDB extends LoggerAbstract
 {
     protected $dbh;
 
     protected function _connect()
     {
         $opt = array(
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         );
-        $dsn = "mysql:host=" . Config\LoggerConfig::HOST . ";dbname=" . Config\LoggerConfig::DBNAME . "";
-        $this->dbh = new \PDO($dsn, Config\LoggerConfig::DBUSER, Config\LoggerConfig::DBPASS, $opt);
+        $dsn = "mysql:host=" . LoggerConfig::HOST . ";dbname=" . LoggerConfig::DBNAME . "";
+        $this->dbh = new PDO($dsn, LoggerConfig::DBUSER, LoggerConfig::DBPASS, $opt);
     }
 
     protected function _write($msg, $type)

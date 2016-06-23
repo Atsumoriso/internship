@@ -7,7 +7,7 @@
  */
 namespace Core\Abstraction;
 
-abstract class LoggerAbstract implements \Core\Abstraction\LoggerInterface
+abstract class LoggerAbstract implements LoggerInterface
 {
     protected $typeWarning = 'Warning message: ';
 
