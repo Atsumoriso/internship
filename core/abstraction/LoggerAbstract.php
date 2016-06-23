@@ -9,25 +9,25 @@ namespace Core\Abstraction;
 
 abstract class LoggerAbstract implements LoggerInterface
 {
-    protected $typeWarning = 'Warning message: ';
+    const TYPE_WARNING = 'Warning message: ';
 
-    protected $typeError = 'Error message: ';
+    const TYPE_ERROR = 'Error message: ';
 
-    protected $typeNotice = 'Notice message: ';
+    const TYPE_NOTICE = 'Notice message: ';
 
     public function warning($msg)
     {
-        $this->_write($msg, $this->typeWarning);
+        $this->_write($msg, self::TYPE_WARNING);
     }
 
     public function error($msg)
     {
-        $this->_write($msg, $this->typeError);
+        $this->_write($msg, self::TYPE_ERROR);
     }
 
     public function notice($msg)
     {
-        $this->_write($msg, $this->typeNotice);
+        $this->_write($msg, self::TYPE_NOTICE);
     }
 
     abstract protected function _write($msg, $type);
