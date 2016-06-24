@@ -1,5 +1,4 @@
 <?php
-
 spl_autoload_register(function($classname) {
     $sitePath = $_SERVER['DOCUMENT_ROOT'];
     $filename = explode("\\", $classname);

@@ -1,5 +1,5 @@
 <?php
-namespace Config;
+namespace Logger\Config;
 
 class LoggerConfig
 {
@@ -7,7 +7,7 @@ class LoggerConfig
     const DBUSER = 'root';
     const DBPASS = '1';
     const HOST = 'localhost';
-    const FILEPATH = './log/log.txt';
+    const FILEPATH = './logger/log/log.txt';
 }
 
 

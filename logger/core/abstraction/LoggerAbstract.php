@@ -5,7 +5,7 @@
  * Date: 22.06.16
  * Time: 16:47
  */
-namespace Core\Abstraction;
+namespace Logger\Core\Abstraction;
 
 abstract class LoggerAbstract implements LoggerInterface
 {

@@ -5,10 +5,10 @@
  * Date: 22.06.16
  * Time: 16:49
  */
-namespace Core\Classes;
+namespace Logger\Core\Classes;
 
-use Config\LoggerConfig;
-use Core\Abstraction\LoggerAbstract;
+use Logger\Config\LoggerConfig;
+use Logger\Core\Abstraction\LoggerAbstract;
 use PDO;
 
 class LoggerDB extends LoggerAbstract
