@@ -1,15 +1,15 @@
 <?php
-spl_autoload_register(function($classname) {
+spl_autoload_register(function($className) {
     $sitePath = $_SERVER['DOCUMENT_ROOT'];
-    $filename = explode("\\", $classname);
+    $fileName = explode("\\", $className);
 
-    for($i=0; $i<count($filename)-1; $i++)
+    for($i=0; $i<count($fileName)-1; $i++)
     {
-        $filename[$i] = lcfirst($filename[$i]);
+        $fileName[$i] = lcfirst($fileName[$i]);
     }
 
-    $filename = implode('/', $filename);
-    $file = $sitePath . '/' . $filename . '.php';
+    $fileName = implode('/', $fileName);
+    $file = $sitePath . '/' . $fileName . '.php';
 
     if (!file_exists($file))
     {
