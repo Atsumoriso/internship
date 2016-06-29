@@ -16,6 +16,6 @@ class UserModel
     {
         $em = new ManagerModel;
         //$user = new User();
-        return $em->model('user')->queryBilder("Select * from user");
+        return $em->model('user')->findAll();
     }
 }
