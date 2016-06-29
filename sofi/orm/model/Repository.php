@@ -13,12 +13,19 @@ use Sofi\Orm\Connector\DBConnector;
 
 class Repository implements ObjectRepository
 {
-    public function findAll($entity)
+    protected $entity;
+
+    public function __construct($entity)
+    {
+        $this->entity = $entity;
+    }
+
+    public function findAll()
     {
         try {
             $dbConnectorInstance = DBConnector::getInstance();
             $dbConnnection = $dbConnectorInstance->getConnection();
-            $statement = $dbConnnection->prepare("Select * from " . $entity);
+            $statement = $dbConnnection->prepare("Select * from " . $this->entity);
             $statement->execute();
             $result = $statement->fetchAll();
             unset($dbConnection);
@@ -31,7 +38,18 @@ class Repository implements ObjectRepository
 
     public function find($id)
     {
-        // TODO: Implement find() method.
+        try {
+            $dbConnectorInstance = DBConnector::getInstance();
+            $dbConnnection = $dbConnectorInstance->getConnection();
+            $statement = $dbConnnection->prepare("Select * from {$this->entity} where idUser={$id}");
+            $statement->execute();
+            $result = $statement->fetchAll();
+            unset($dbConnection);
+
+            return $result;
+        } catch (PDOException $e) {
+            die("PDO Exception" . $e->getMessage());
+        }
     }
 
     public function findBy(array $criteria, $limit, $orderBy)

@@ -13,7 +13,7 @@ interface ObjectRepository
 {
     public function find($id);
 
-    public function findAll($entity);
+    public function findAll();
 
     public function findBy(array $criteria, $limit, $orderBy);
 }

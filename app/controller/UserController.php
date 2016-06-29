@@ -16,7 +16,6 @@ class UserController extends Controller
     public function ActionIndex()
     {
         $userModel = new UserModel;
-
         $this->_view->generate('base.php', 'template/users.php' ,$userModel->getAllUsers());
     }
 }

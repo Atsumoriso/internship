@@ -8,13 +8,13 @@
 
 namespace App\Model;
 
-use Sofi\Orm\Model\Repository;
-use App\Entity\User;
+use Sofi\Orm\Model\EntityManager;
 
-class UserModel extends Repository
+class UserModel
 {
     public function getAllUsers()
     {
-        return $this->findAll('user');
+        $em = new EntityManager;
+        return $em->entity('user')->findAll();
     }
 }
