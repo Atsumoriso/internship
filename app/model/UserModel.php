@@ -8,13 +8,14 @@
 
 namespace App\Model;
 
-use Sofi\Orm\Model\EntityManager;
+use Sofi\Orm\Model\ManagerModel;
 
-class UserModel
+class UserModel 
 {
-    public function getAllUsers()
+    public static function getAllUsers()
     {
-        $em = new EntityManager;
-        return $em->entity('user')->findAll();
+        $em = new ManagerModel;
+        //$user = new User();
+        return $em->model('user')->queryBilder("Select * from user");
     }
 }
