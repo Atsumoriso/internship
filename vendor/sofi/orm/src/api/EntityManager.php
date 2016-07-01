@@ -34,24 +34,16 @@ class EntityManager implements EntityInterface
      */
     private $setIdToggle;
 
-    public function getCollection()
-    {
-        $sql = "Select * from " . strtolower($this->_getClassName());
-        $result = $this->_queryExecute($sql)->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE);
-
-        return $result;
-    }
-
     public function load($id)
     {
-        $sql = "Select * from " . strtolower($this->_getClassName()) . " where id=" . $id;
+        $sql = "Select * from {$this->getTableName()} where id=" . $id;
         $result = $this->_queryExecute($sql)->fetch(PDO::FETCH_ASSOC);
 
         foreach ($result as $key => $entity) {
-            $this->$key = $entity;
+            $this->setData($key, $entity);
         }
 
-        return $this;
+        return $this->data;
     }
 
     public function save()
@@ -59,12 +51,10 @@ class EntityManager implements EntityInterface
         $entity = $this;
 
         if($entity->getId()==null) {
-            $sql = $this->_insertBuilder($entity);
+            $this->_insertBuilder($entity);
         } else {
-            $sql = $this->_updateBuilder($entity);
+            $this->_updateBuilder($entity);
         }
-
-        $this->_queryExecute($sql);
     }
 
     public function delete()
@@ -74,23 +64,10 @@ class EntityManager implements EntityInterface
             $sql = '';
             unset($entity);
         } else {
-            $sql = "DELETE FROM " . strtolower($this->_getClassName()) . " WHERE id={$entity->id}";
+            $sql = "DELETE FROM {$this->getTableName()} WHERE id={$entity->getId()}";
         }
 
         $this->_queryExecute($sql);
-    }
-
-    /**
-     * Get current entity class name
-     * needed for sql queries to now
-     * which table is needed to select
-     *
-     * @return string $path
-     */
-    protected function _getClassName() {
-        $path = explode('\\', get_class($this));
-
-        return array_pop($path);
     }
 
     /**
@@ -107,48 +84,6 @@ class EntityManager implements EntityInterface
     }
 
     /**
-     * This method execute all
-     * sql queries
-     *
-     * @param string $sql
-     * @return object $statement
-     */
-    protected function _queryExecute($sql)
-    {
-        try {
-            $dbConnectorInstance = DBConnector::getInstance();
-            $dbConnnection = $dbConnectorInstance->getConnection();
-            $statement = $dbConnnection->prepare($sql);
-            $statement->execute();
-
-            if($this->setIdToggle) {
-                $this->_setLastInsertredId($dbConnnection);
-            }
-            $this->setIdToggle = false;
-
-            return $statement;
-
-        } catch (PDOException $e) {
-            die("PDO Exception" . $e->getMessage());
-        }
-    }
-
-    /**
-     * This method needed for counting all
-     * object properties
-     *
-     * @param object $object
-     * @return int count($props)
-     */
-    private function _countObjectProperties($object)
-    {
-        $reflect = new ReflectionClass($object);
-        $props = $reflect->getProperties(ReflectionProperty::IS_PROTECTED);
-
-        return count($props);
-    }
-
-    /**
      * This method needed to build multiple
      * insert queries
      *
@@ -157,40 +92,28 @@ class EntityManager implements EntityInterface
      */
     protected function _insertBuilder($entity)
     {
+        $dbConnectorInstance = DBConnector::getInstance();
+        $dbConnnection = $dbConnectorInstance->getConnection();
+
         $this->setIdToggle = true;
-        $sql = "INSERT INTO " . strtolower($this->_getClassName()) . " (";
-        $i = 0;
-        //-1 because except id property
-        $totalProp = $this->_countObjectProperties($this)-1;
+        $data = array_slice($this->getData(), 1);
+        $sql = "INSERT INTO {$this->getTableName()} ("
+             .  implode(', ', array_keys($data)) . ") VALUES("
+             .  implode(', ', array_map(function ($str) {
+                        return sprintf(":%s", $str);
+                },
+                array_keys($data)))
+             .  ")";
 
-        foreach ($entity as $key => $value) {
-            if($key!='id') {
-                $i++;
-                $sql .= $key;
 
-                if($i<$totalProp) {
-                    $sql .= ",";
-                }
-            }
+        $statement = $dbConnnection->prepare($sql);
+
+        foreach ($data as $key => $value) {
+            $statement->bindParam(":" . $key, $value);
         }
 
-        $sql .= ") VALUES(";
-        $i = 0;
-
-        foreach ($entity as $key => $value) {
-            if($key!='id') {
-                $i++;
-                $sql .= "'" . $value . "'";
-
-                if($i<$totalProp) {
-                    $sql .= ", ";
-                }
-            }
-        }
-
-        $sql .=");";
-
-        return $sql;
+        $statement->execute();
+        $this->_setLastInsertredId($dbConnnection);
     }
 
     /**
@@ -202,10 +125,10 @@ class EntityManager implements EntityInterface
      */
     protected function _updateBuilder($entity)
     {
-        $sql = "UPDATE " . strtolower($this->_getClassName()) . " SET ";
+        $sql = "UPDATE {$this->getTableName()} SET ";
         $i = 0;
         //-1 because except id property
-        $totalProp = $this->_countObjectProperties($this)-1;
+        $totalProp = count($this->getData())-1;
 
         foreach ($entity as $key => $value) {
             if($key!='id') {

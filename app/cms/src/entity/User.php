@@ -12,34 +12,51 @@ use Vendor\Sofi\Orm\Src\Api\EntityManager;
 
 class User extends EntityManager
 {
-    protected $id;
+    protected $data = array(
+        'id'        =>  '',
+        'firstName' =>  '',
+        'lastName'  =>  ''
+    );
 
-    protected $firstName;
+    protected $tableName = 'user';
 
-    protected $lastName;
-    
+    public function getTableName()
+    {
+        return $this->tableName;
+    }
+
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function setData($key, $value)
+    {
+        $this->data[$key] = $value;
+    }
+
     public function getId()
     {
-        return $this->id;
+        return $this->data['id'];
     }
 
     public function getFirstName()
     {
-        return $this->firstName;
-    }
-
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
+        return $this->data['firstName'];;
     }
 
     public function getLastName()
     {
-        return $this->lastName;
+        return $this->data['lastName'];
     }
 
-    public function setLastName($lastName)
+    public function setFirstName($firstName)
     {
-        $this->lastName = $lastName;
+        $this->data['firstName'] = $firstName;
+    }
+
+    public function setLastName($firstName)
+    {
+        $this->data['lastName'] = $firstName;
     }
 }

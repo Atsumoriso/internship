@@ -38,11 +38,4 @@ interface EntityInterface
      * @return void
      */
     public function delete();
-
-    /**
-     * return array of object of needed entity
-     *
-     * @return array
-     */
-    public function getCollection();
 }
