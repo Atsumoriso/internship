@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29d61abd-3605-4c3b-9137-c76627de812a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/cms/src/entity/User.php" afterPath="$PROJECT_DIR$/app/cms/src/entity/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sofi/orm/src/api/EntityManager.php" afterPath="$PROJECT_DIR$/vendor/sofi/orm/src/api/EntityManager.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/sofi/orm/src/api/interfaces/EntityInterface.php" afterPath="$PROJECT_DIR$/vendor/sofi/orm/src/api/interfaces/EntityInterface.php" />
     </list>
     <ignored path="public_html.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,20 +47,20 @@
       <file leaf-file-name="EntityManager.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vendor/sofi/orm/src/api/EntityManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
+            <state relative-caret-position="191">
+              <caret line="105" column="20" selection-start-line="105" selection-start-column="20" selection-end-line="105" selection-end-column="20" />
               <folding>
                 <element signature="e#169#209#0#PHP" expanded="true" />
-                <marker date="1467384967543" expanded="true" signature="784:831" ph="Select * fro... ${strtolower($this-&gt;_getClassName())}" />
-                <marker date="1467384967543" expanded="true" signature="1451:1496" ph="DELETE FROM " />
-                <marker date="1467384967543" expanded="true" signature="2301:2338" ph="INSERT INTO $... " />
-                <marker date="1467384967543" expanded="true" signature="2301:2339" ph="INSERT INTO $... " />
-                <marker date="1467384967543" expanded="true" signature="2301:2401" ph="INSERT INTO $... " />
-                <marker date="1467384967543" expanded="true" signature="2301:2417" ph="INSERT INTO $... " />
-                <marker date="1467384967543" expanded="true" signature="2301:2568" ph="INSERT INTO $... " />
-                <marker date="1467384967543" expanded="true" signature="2301:2587" ph="INSERT INTO $... " />
-                <marker date="1467384967543" expanded="true" signature="2849:2989" ph="/** * This m... " />
-                <marker date="1467384967543" expanded="true" signature="3059:3093" ph="UPDATE ${{$t... " />
+                <marker date="1467385680215" expanded="true" signature="784:831" ph="Select * fro... ${strtolower($this-&gt;_getClassName())}" />
+                <marker date="1467385680215" expanded="true" signature="1451:1496" ph="DELETE FROM " />
+                <marker date="1467385680215" expanded="true" signature="2301:2338" ph="INSERT INTO $... " />
+                <marker date="1467385680215" expanded="true" signature="2301:2339" ph="INSERT INTO $... " />
+                <marker date="1467385680215" expanded="true" signature="2301:2401" ph="INSERT INTO $... " />
+                <marker date="1467385680215" expanded="true" signature="2301:2417" ph="INSERT INTO $... " />
+                <marker date="1467385680215" expanded="true" signature="2301:2568" ph="INSERT INTO $... " />
+                <marker date="1467385680215" expanded="true" signature="2301:2587" ph="INSERT INTO $... " />
+                <marker date="1467385680215" expanded="true" signature="2849:2989" ph="/** * This m... " />
+                <marker date="1467385680215" expanded="true" signature="3059:3093" ph="UPDATE ${{$t... " />
               </folding>
             </state>
           </provider>
@@ -534,12 +531,12 @@
       <updated>1467033952059</updated>
       <workItem from="1467033953211" duration="41915000" />
       <workItem from="1467294318197" duration="5016000" />
-      <workItem from="1467364143881" duration="11833000" />
+      <workItem from="1467364143881" duration="12187000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58777000" />
+    <option name="totallyTimeSpent" value="59131000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -885,20 +882,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/sofi/orm/src/api/EntityManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="104" column="35" selection-start-line="104" selection-start-column="35" selection-end-line="104" selection-end-column="35" />
+        <state relative-caret-position="191">
+          <caret line="105" column="20" selection-start-line="105" selection-start-column="20" selection-end-line="105" selection-end-column="20" />
           <folding>
             <element signature="e#169#209#0#PHP" expanded="true" />
-            <marker date="1467384967543" expanded="true" signature="784:831" ph="Select * fro... ${strtolower($this-&gt;_getClassName())}" />
-            <marker date="1467384967543" expanded="true" signature="1451:1496" ph="DELETE FROM " />
-            <marker date="1467384967543" expanded="true" signature="2301:2338" ph="INSERT INTO $... " />
-            <marker date="1467384967543" expanded="true" signature="2301:2339" ph="INSERT INTO $... " />
-            <marker date="1467384967543" expanded="true" signature="2301:2401" ph="INSERT INTO $... " />
-            <marker date="1467384967543" expanded="true" signature="2301:2417" ph="INSERT INTO $... " />
-            <marker date="1467384967543" expanded="true" signature="2301:2568" ph="INSERT INTO $... " />
-            <marker date="1467384967543" expanded="true" signature="2301:2587" ph="INSERT INTO $... " />
-            <marker date="1467384967543" expanded="true" signature="2849:2989" ph="/** * This m... " />
-            <marker date="1467384967543" expanded="true" signature="3059:3093" ph="UPDATE ${{$t... " />
+            <marker date="1467385680215" expanded="true" signature="784:831" ph="Select * fro... ${strtolower($this-&gt;_getClassName())}" />
+            <marker date="1467385680215" expanded="true" signature="1451:1496" ph="DELETE FROM " />
+            <marker date="1467385680215" expanded="true" signature="2301:2338" ph="INSERT INTO $... " />
+            <marker date="1467385680215" expanded="true" signature="2301:2339" ph="INSERT INTO $... " />
+            <marker date="1467385680215" expanded="true" signature="2301:2401" ph="INSERT INTO $... " />
+            <marker date="1467385680215" expanded="true" signature="2301:2417" ph="INSERT INTO $... " />
+            <marker date="1467385680215" expanded="true" signature="2301:2568" ph="INSERT INTO $... " />
+            <marker date="1467385680215" expanded="true" signature="2301:2587" ph="INSERT INTO $... " />
+            <marker date="1467385680215" expanded="true" signature="2849:2989" ph="/** * This m... " />
+            <marker date="1467385680215" expanded="true" signature="3059:3093" ph="UPDATE ${{$t... " />
           </folding>
         </state>
       </provider>

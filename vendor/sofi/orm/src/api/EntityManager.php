@@ -109,7 +109,7 @@ class EntityManager implements EntityInterface
         $statement = $dbConnnection->prepare($sql);
 
         foreach ($data as $key => $value) {
-            $statement->bindParam(":" . $key, $value);
+            $statement->bindValue(":" . $key, $value);
         }
 
         $statement->execute();
