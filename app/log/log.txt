@@ -1,0 +1,27 @@
+
+2016-06-22 18:04:22	| Error message: my custom error msg
+2016-06-23 12:16:09	| Error message: my custom error msg
+2016-06-23 12:16:10	| Error message: my custom error msg
+2016-06-23 14:09:08	| Error message: my custom error msg
+2016-06-23 14:09:12	| Error message: my custom error msg
+2016-06-23 14:27:09	| Error message: my custom error msg
+2016-06-23 14:27:25	| Error message: my custom error msg
+2016-06-23 14:27:26	| Error message: my custom error msg
+2016-06-23 14:34:18	| Error message: my custom error msg
+2016-06-23 14:37:49	| Error message: my custom error msg
+2016-06-23 14:39:57	| Error message: my custom error msg
+2016-06-23 14:40:25	| Error message: my custom error msg
+2016-06-23 14:43:38	| Error message: my custom error msg
+2016-06-23 14:44:15	| Error message: my custom error msg
+2016-06-23 14:44:18	| Error message: my custom error msg
+2016-06-23 16:25:05	| Error message: my custom error msg
+2016-06-23 16:25:05	| Error message: my custom error msg
+2016-06-23 16:27:30	| Error message: my custom error msg
+2016-06-23 18:51:20	| Error message: my custom error msg
+2016-06-23 18:51:26	| Error message: my custom error msg
+2016-06-23 18:54:36	| Error message: my custom error msg
+2016-06-23 18:59:59	| Error message: my custom error msg
+2016-06-24 11:43:58	| Error message: my custom error msg
+2016-06-24 11:44:23	| Error message: my custom error msg
+2016-06-24 11:57:17	| Error message: my custom error msg
+2016-06-24 11:57:19	| Error message: my custom error msg

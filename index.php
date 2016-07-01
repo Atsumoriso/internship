@@ -1,6 +1,6 @@
 <?php
-use App\Core\Route;
+use Vendor\Core\Route;
 
-include './app/autoloader.php';
+include './vendor/autoloader.php';
 
 Route::start();
