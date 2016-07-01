@@ -4,6 +4,9 @@
  * User: dor
  * Date: 30.06.16
  * Time: 12:40
+ *
+ * @category classes
+ * @package App\Classes
  */
 
 namespace App\Classes;
@@ -12,8 +15,14 @@ use App\Classes\DBConnector;
 use App\Interfaces\EntityInterface;
 use PDO;
 
+/**
+ * Class EntityManager
+ * @author Ciklum intern https://github.com/leopardiwe/internship
+ */
 class EntityManager implements EntityInterface
 {
+    protected $setIdToggle;
+
     public function getCollection()
     {
         $sql = "Select * from " . strtolower($this->_getClassName());
@@ -39,9 +48,9 @@ class EntityManager implements EntityInterface
         $entity = $this;
 
         if($entity->getId()==null) {
-            $sql = $this->_insertBilder($entity);
+            $sql = $this->_insertBuilder($entity);
         } else {
-            $sql = $this->_updateBilder($entity);
+            $sql = $this->_updateBuilder($entity);
         }
 
         $this->_queryExecute($sql);
@@ -60,17 +69,39 @@ class EntityManager implements EntityInterface
         $this->_queryExecute($sql);
     }
 
+    /**
+     * Get current entity class name
+     * needed for sql queries to now
+     * which table is needed to select
+     *
+     * @return string $path
+     */
     protected function _getClassName() {
         $path = explode('\\', get_class($this));
 
         return array_pop($path);
     }
 
+    /**
+     * When you save new user this method
+     * will help you to set id for new entity
+     * object
+     *
+     * @param resource $dbConnnection
+     * @return void
+     */
     protected function _setLastInsertredId($dbConnnection)
     {
         $this->id = $dbConnnection->lastInsertId();
     }
 
+    /**
+     * This method execute all
+     * sql queries
+     *
+     * @param string $sql
+     * @return object $statement
+     */
     protected function _queryExecute($sql)
     {
         try {
@@ -78,7 +109,11 @@ class EntityManager implements EntityInterface
             $dbConnnection = $dbConnectorInstance->getConnection();
             $statement = $dbConnnection->prepare($sql);
             $statement->execute();
-            $this->_setLastInsertredId($dbConnnection);
+
+            if($this->setIdToggle) {
+                $this->_setLastInsertredId($dbConnnection);
+            }
+            $this->setIdToggle = false;
 
             return $statement;
 
@@ -87,6 +122,13 @@ class EntityManager implements EntityInterface
         }
     }
 
+    /**
+     * This method needed for counting all
+     * object properties
+     *
+     * @param object $object
+     * @return int $count
+     */
     private function _countObjectProperties($object)
     {
         $count = 0;
@@ -99,8 +141,17 @@ class EntityManager implements EntityInterface
         return $count;
     }
 
-    protected function _insertBilder($entity)
+    /**
+     * This method needed to build multiple
+     * insert queries
+     *
+     * @param object $entity
+     * @return string $sql
+     */
+    protected function _insertBuilder($entity)
     {
+
+        $this->setIdToggle = true;
         $sql = "INSERT INTO " . strtolower($this->_getClassName()) . " (";
         $i = 0;
         //-1 because except id property
@@ -136,7 +187,14 @@ class EntityManager implements EntityInterface
         return $sql;
     }
 
-    protected function _updateBilder($entity)
+    /**
+     * This method needed to build multiple
+     * update queries
+     *
+     * @param object $entity
+     * @return string $sql
+     */
+    protected function _updateBuilder($entity)
     {
         $sql = "UPDATE " . strtolower($this->_getClassName()) . " SET ";
         $i = 0;
