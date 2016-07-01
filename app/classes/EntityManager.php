@@ -12,16 +12,27 @@
 namespace App\Classes;
 
 use App\Classes\DBConnector;
+use App\Entity\User;
 use App\Interfaces\EntityInterface;
 use PDO;
-
+use ReflectionClass;
+use ReflectionProperty;
 /**
  * Class EntityManager
  * @author Ciklum intern https://github.com/leopardiwe/internship
  */
 class EntityManager implements EntityInterface
 {
-    protected $setIdToggle;
+    /**
+     * this variable marked as true
+     * when you try to insert new row
+     * and return the latest id
+     *
+     * and it`s marked as false when
+     * you try another sql operation
+     *
+     */
+    private $setIdToggle;
 
     public function getCollection()
     {
@@ -127,18 +138,14 @@ class EntityManager implements EntityInterface
      * object properties
      *
      * @param object $object
-     * @return int $count
+     * @return int count($props)
      */
     private function _countObjectProperties($object)
     {
-        $count = 0;
-        foreach ($object as $key => $obj) {
-            if($key) {
-                $count++;
-            }
-        }
+        $reflect = new ReflectionClass($object);
+        $props = $reflect->getProperties(ReflectionProperty::IS_PROTECTED);
 
-        return $count;
+        return count($props);
     }
 
     /**
@@ -150,7 +157,6 @@ class EntityManager implements EntityInterface
      */
     protected function _insertBuilder($entity)
     {
-
         $this->setIdToggle = true;
         $sql = "INSERT INTO " . strtolower($this->_getClassName()) . " (";
         $i = 0;
